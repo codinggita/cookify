@@ -55,7 +55,84 @@ $$Match \% = \left( \frac{\text{Ingredients Available}}{\text{Ingredients Requir
 
 ---
 
-### **Mentor Approval Section**
+# 🚀 Server API Project
+
+A clean and scalable back-end server architecture. This project handles [Project Purpose, e.g., User Authentication and Task Management] and is designed for easy integration with frontend frameworks.
+
+---
+
+## 🛠 Prerequisites
+
+Before you begin, ensure you have the following installed on your local machine:
+* **Node.js** (v18.x or higher)
+* **npm** (comes with Node) or **yarn**
+* **Git**
+
+---
+
+## 📥 Installation & Local Setup
+
+Follow these steps to clone the repository and set up your local development environment:
+
+### 1. Clone the Repository
+Open your terminal and run the following command:
+
+git clone https://github.com/kuldeeppatel-cg/cookify.git
+server url https://cookify-server.onrender.com/
+
+## 🛣 API Endpoints Reference
+
+### 🔐 Authentication
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/api/recipes/bulk` | Register a new user account | No |
+<!-- | **POST** | `/api/auth/login` | Authenticate user & return JWT | No | -->
+| **GET** | `/api/recipes` | Get current user profile | **Yes** |
+
+### 📦 Resources (e.g., Recipes/Items)
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/api/recipes'` | Fetch all records | No |
+| **POST** | `/api/recipes/bulk` | Create a new record in bulk | **Yes** |
+| **PUT** | `/api/recipes/:id` | Update an existing record | **Yes** |
+| **DELETE** | `/api/recipes/:id` | Remove a record from DB | **Yes** |
+
+
+
+---
+
+### 📝 Request Examples (Optional)
+
+#### **Create Item**
+**Endpoint:** `POST /api/items`  
+**Headers:** `Content-Type: application/json`, `Authorization: Bearer <token>`  
+**Body:**
+```json
+  {
+        "_id": "69b3faccd7128ddad45d3303",
+        "id": 1,
+        "title": "Butter Chicken",
+        "category": "Non-Veg",
+        "cuisine": "Indian",
+        "image_url": "https://images.unsplash.com/photo-1603894584115-f73f2ec0a4ad?auto=format&fit=crop&w=800&q=80",
+        "prep_time": "20 mins",
+        "cook_time": "30 mins",
+        "ingredients": [
+            "500g Chicken thighs",
+            "1 cup Tomato puree",
+            "100ml Heavy cream",
+            "2 tbsp Butter",
+            "1 tbsp Garam masala"
+        ],
+        "instructions": [
+            "Marinate chicken in yogurt and spices for 2 hours.",
+            "Sauté tomato puree with butter and ginger-garlic paste.",
+            "Simmer cooked chicken in the tomato gravy and finish with cream.",
+            "Garnish with kasuri methi and serve with Garlic Naan."
+        ]
+    }
+
+ Mentor Approval Section
 * **Student:** Kuldeep Patel
 * **Mentor:** Samir Sir
 * **Goal:** To build a functional MVP that reduces food waste through intelligent ingredient mapping.

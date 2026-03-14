@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #171717;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-accent: #257478; /* Primary teal derived from logo */
+  --color-accent-hover: #1b5d61; /* Darker teal on hover */
+  --color-border-primary: #334155;
+  --color-error: #ef4444;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
