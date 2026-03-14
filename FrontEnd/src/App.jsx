@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import CookNow from './pages/CookNow';
 
 // Custom PrivateRoute component
 const PrivateRoute = ({ children }) => {
@@ -31,13 +32,21 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
-            } 
+            }
+          />
+          <Route
+            path="/cook-now"
+            element={
+              <PrivateRoute>
+                <CookNow />
+              </PrivateRoute>
+            }
           />
         </Routes>
       </Layout>

@@ -19,3 +19,22 @@ body {
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
 }
+
+/* Custom Scrollbar styled for logo accent */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 8px;
+  border: 2px solid var(--color-bg-secondary);
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) var(--color-bg-secondary);
+}
