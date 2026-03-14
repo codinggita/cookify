@@ -60,14 +60,17 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="py-12 px-8 text-center bg-[#171717]/60 backdrop-blur-md border border-white/10 rounded-3xl mb-8">
         <h2 className="mb-4 text-3xl font-semibold">Ready to get cooking?</h2>
         <p className="text-text-secondary mb-8 text-lg">
           Your dashboard is currently empty. Start exploring recipes to fill it up!
         </p>
-        <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 bg-accent text-white hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(37,116,120,0.3)]">
-          Explore Recipes
+        <button
+          onClick={() => navigate('/cook-now')}
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 bg-accent text-white hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(37,116,120,0.3)]"
+        >
+          Cook Now
         </button>
       </div>
     </div>
