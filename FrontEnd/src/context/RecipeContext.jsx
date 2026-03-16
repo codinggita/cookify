@@ -6,7 +6,7 @@ const RecipeContext = createContext();
 export const useRecipeContext = () => useContext(RecipeContext);
 
 export const RecipeProvider = ({ children }) => {
-  const { data: recipes, loading, error } = useApi('https://cookify-server.onrender.com/api/recipes');
+  const { data: recipes, loading, error, refetch } = useApi('http://localhost:3000/api/recipes');
   const user = localStorage.getItem('currentUser') || 'default';
   
   // Persistence state
@@ -50,6 +50,52 @@ export const RecipeProvider = ({ children }) => {
     });
   };
 
+  const addRecipe = async (recipeData) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/recipes/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...recipeData, createdBy: user })
+      });
+      if (!response.ok) throw new Error('Failed to add recipe');
+      await refetch();
+      return { success: true };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: err.message };
+    }
+  };
+
+  const deleteRecipe = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/recipes/${id}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Failed to delete recipe');
+      await refetch();
+      return { success: true };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: err.message };
+    }
+  };
+
+  const updateRecipe = async (id, recipeData) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/recipes/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recipeData)
+      });
+      if (!response.ok) throw new Error('Failed to update recipe');
+      await refetch();
+      return { success: true };
+    } catch (err) {
+      console.error(err);
+      return { success: false, error: err.message };
+    }
+  };
+
   return (
     <RecipeContext.Provider value={{ 
       recipes, loading, error,
@@ -60,7 +106,11 @@ export const RecipeProvider = ({ children }) => {
       dietFilter, setDietFilter,
       savedRecipes, toggleSaved,
       favoriteRecipes, toggleFavorite,
-      recentRecipes, addRecent
+      recentRecipes, addRecent,
+      addRecipe,
+      deleteRecipe,
+      updateRecipe,
+      user
     }}>
       {children}
     </RecipeContext.Provider>
