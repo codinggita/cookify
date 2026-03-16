@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChefHat, BookOpen, Heart, Clock, Bookmark, Utensils, ArrowRight } from 'lucide-react';
+import { ChefHat, BookOpen, Heart, Clock, Bookmark, Utensils, ArrowRight, Plus } from 'lucide-react';
 import { useRecipeContext } from '../context/RecipeContext';
 
 const Dashboard = () => {
@@ -22,54 +22,6 @@ const Dashboard = () => {
         <div className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">Welcome back, <span className="text-accent">{username}!</span></h1>
           <p className="text-text-secondary text-lg max-w-xl leading-relaxed">Your personal kitchen assistant is ready. What are we cooking today?</p>
-        </div>
-      </div>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {/* Saved Count */}
-        <div 
-          onClick={() => navigate('/saved')}
-          className="p-6 bg-[#171717]/40 backdrop-blur-md border border-white/5 rounded-[2rem] hover:border-accent/30 transition-all duration-300 group cursor-pointer"
-        >
-          <div className="flex items-center gap-5">
-            <div className="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Bookmark size={26} fill={savedRecipes.length > 0 ? "currentColor" : "none"} />
-            </div>
-            <div>
-              <p className="text-xs text-text-secondary font-bold uppercase tracking-widest mb-1">Saved Recipes</p>
-              <p className="text-3xl font-black">{savedRecipes.length}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Favorites Count */}
-        <div 
-          onClick={() => navigate('/favorites')}
-          className="p-6 bg-[#171717]/40 backdrop-blur-md border border-white/5 rounded-[2rem] hover:border-red-500/30 transition-all duration-300 group cursor-pointer"
-        >
-          <div className="flex items-center gap-5">
-            <div className="w-14 h-14 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Heart size={26} fill={favoriteRecipes.length > 0 ? "currentColor" : "none"} />
-            </div>
-            <div>
-              <p className="text-xs text-text-secondary font-bold uppercase tracking-widest mb-1">Favorites</p>
-              <p className="text-3xl font-black">{favoriteRecipes.length}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Total Explored/Creations (Placeholders for now) */}
-        <div className="p-6 bg-[#171717]/40 backdrop-blur-md border border-white/5 rounded-[2rem] hover:border-white/20 transition-all duration-300 group">
-          <div className="flex items-center gap-5">
-            <div className="w-14 h-14 rounded-2xl bg-white/5 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Utensils size={26} />
-            </div>
-            <div>
-              <p className="text-xs text-text-secondary font-bold uppercase tracking-widest mb-1">Cooked Today</p>
-              <p className="text-3xl font-black">0</p>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -109,10 +61,26 @@ const Dashboard = () => {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
+                  
+                  {/* Diet Badge (Top Right) */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <div className={`p-1 rounded-lg backdrop-blur-md border ${
+                      recipe.category?.toLowerCase() === 'veg' 
+                        ? 'bg-[#10b981]/10 border-[#10b981]/30' 
+                        : 'bg-[#ef4444]/10 border-[#ef4444]/30'
+                    }`}>
+                      <div className={`w-3 h-3 border-2 rounded-sm flex items-center justify-center ${
+                        recipe.category?.toLowerCase() === 'veg' ? 'border-[#10b981]' : 'border-[#ef4444]'
+                      }`}>
+                        <div className={`w-1 h-1 rounded-full ${
+                          recipe.category?.toLowerCase() === 'veg' ? 'bg-[#10b981]' : 'bg-[#ef4444]'
+                        }`} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold text-sm line-clamp-1 group-hover:text-accent transition-colors">{recipe.title}</h3>
-                  <p className="text-[10px] text-text-secondary uppercase tracking-widest mt-1">{recipe.category || 'Recipe'}</p>
                 </div>
               </div>
             ))}

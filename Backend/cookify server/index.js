@@ -42,7 +42,8 @@ const recipeSchema = new mongoose.Schema({
 
   flour: [String],
 
-  instructions: [String]
+  instructions: [String],
+  createdBy: { type: String, default: 'server' }
 }, { timestamps: true });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
